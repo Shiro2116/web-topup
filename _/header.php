@@ -3,7 +3,7 @@
         <!-- logo -->
         <div class="h-[60px] m-shadow flex flex-row items-center">
             <a href="/" class="text-sky-600 flex items-center space-x-2 px-4">
-                <span class="text-2xl font-extrabold">GamersNet</span>
+                <span class="text-2xl font-extrabold"><?php echo $c_brand ?></span>
             </a>
         </div>
         <!-- nav -->
@@ -27,7 +27,7 @@
         <div class="container-xxl flex flex-row items-center justify-between">
             <div class="my-auto">
                 <a href="/">
-                    <h1 class="color-fifth  sm:text-3xl text-2xl font-bold">GamersNet</h1>
+                    <h1 class="color-fifth  sm:text-3xl text-2xl font-bold"><?php echo $c_brand ?></h1>
                 </a>
             </div>
             <button id="btn-pr-menu" class="mobile-menu-button p-4 focus:outline-none focus:bg-gray-700 text-gray-100 sm:hidden ">

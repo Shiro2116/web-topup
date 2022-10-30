@@ -7,3 +7,5 @@ require_once("core/app.class.php");
 $app = new App();
 $c_url = "http://192.168.43.2:8082";
 $kontak = "https://wa.me/6285870873361";
+$captcha_secret = "6LcARcUiAAAAADO7kiuEgqCIJ4nhZF8_C4rHUj_P";
+$captcha_site_key = "6LcARcUiAAAAAEHie3viJXshh1VId9dvGJfbYAkg";
