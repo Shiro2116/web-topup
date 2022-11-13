@@ -150,16 +150,17 @@ $data_trx = json_decode($fetch_trx, true);
                             if (isset($id_trx, $status_pay)){
                                 //grab payment
                                 if ($status_pay == "Pending"){
-                                    $grab_pay = $app->grab_data("$api_url/trx/get-payment/$trx_id");
+                                    $grab_pay = $app->grab_data("$api_url/third-party/payment-trx/$trx_id");
+                                    // echo $grab_pay;
                                     $data_pay = json_decode($grab_pay, true);
                                     // var_dump($data_pay);
                                     if (isset($data_pay['status'])){
                                         if ($data_pay['status']==1){
                                             $data = $data_pay['data'];
                                             $tipe = $data['tipe'];
-                                            $link = $data['link'];
-                                            $va = $data['va'];
-                                            $qr = $data['qr'];
+                                            $link = $data['data'];
+                                            $va = $data['data'];
+                                            $qr = $data['data'];
                                             if ($tipe == "qr"){
                                                 //QRcode::png($qr);
                                                 ?>

@@ -20,6 +20,17 @@
             <a href="<?php echo $kontak ?>" target="_blank" class="menu_sidebar">
                 Hubungi Kami
             </a>
+            <?php
+                if (isset($data_user)) {
+                    ?>
+                        <a href="/logout" class="menu_sidebar text-red-500">Log Out</a>
+                    <?php
+                } else {
+                ?>
+                    <a href="/user/login" class="menu_sidebar">Login / Masuk</a>
+                <?php
+                }
+                ?>
         </nav>
     </div>
     <!-- content -->
@@ -37,12 +48,27 @@
             </button>
         </div>
     </div>
-    <div class="mbg-secondary h-[53px]  m-shadow sm:flex hidden flex-col justify-center items-center transition duration-200 delay-50 ease-in-out ">
-        <div class="my-auto flex flex-row m-auto gap gap-4 container-xxl">
-            <a href="/" class="menu_list">Home</a>
-            <a href="/cek-transaksi" class="menu_list">Cek Transaksi</a>
-            <!-- <a href="/daftar/harga" class="menu_list">Daftar Harga</a> -->
-            <a href="<?php echo $kontak ?>" target="_blank" class="menu_list">Hubungi Kami</a>
+    <div class="mbg-secondary h-[53px]  m-shadow sm:flex hidden flex-row justify-between items-center transition duration-200 delay-50 ease-in-out ">
+        <div class="container-xxl flex flex-row items-center justify-between w-full">
+            <div class="flex flex-row  gap gap-4 items-start w-1/2">
+                <a href="/" class="menu_list">Home</a>
+                <a href="/cek-transaksi" class="menu_list">Cek Transaksi</a>
+                <!-- <a href="/daftar/harga" class="menu_list">Daftar Harga</a> -->
+                <a href="<?php echo $kontak ?>" target="_blank" class="menu_list">Hubungi Kami</a>
+            </div>
+            <div class="my-auto">
+                <?php
+                if (isset($data_user)) {
+                    ?>
+                        <a href="/logout" class="menu_list text-red-500">Log Out</a>
+                    <?php
+                } else {
+                ?>
+                    <a href="/user/login" class="menu_list">Login / Masuk</a>
+                <?php
+                }
+                ?>
+            </div>
         </div>
     </div>
 </div>

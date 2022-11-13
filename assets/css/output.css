@@ -725,6 +725,30 @@ h2 {
   }
 }
 
+.btn-me {
+  --tw-bg-opacity: 1;
+  background-color: rgb(27 35 40 / var(--tw-bg-opacity));
+  width: 100%;
+  border-radius: 0.5rem;
+  --tw-border-opacity: 1;
+  border-color: rgb(163 163 163 / var(--tw-border-opacity));
+  padding: 1rem;
+  font-weight: 600;
+  --tw-text-opacity: 1;
+  color: rgb(255 255 255 / var(--tw-text-opacity));
+  transition-delay: 75ms;
+  transition-duration: 200ms;
+  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
+  box-shadow: 0px 9px 6px rgba(0, 0, 0, 0.25);
+}
+
+.btn-me:hover {
+  --tw-bg-opacity: 1;
+  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
+}
+
+/* color-secondary border-1 border-neutral-400 rounded-lg hover:bg-sky-700 animation delay-50 delay-75 duration-200 ease-in   duration-200 ease-in */
+
 .pointer-events-none {
   pointer-events: none;
 }
@@ -796,6 +820,11 @@ h2 {
   margin-right: auto;
 }
 
+.my-2 {
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
 .my-3 {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem;
@@ -831,6 +860,14 @@ h2 {
 
 .mt-\[5px\] {
   margin-top: 5px;
+}
+
+.mt-\[200px\] {
+  margin-top: 200px;
+}
+
+.mb-10 {
+  margin-bottom: 2.5rem;
 }
 
 .mb-0 {
@@ -1180,11 +1217,6 @@ h2 {
   border-color: rgb(51 65 85 / var(--tw-border-opacity));
 }
 
-.border-neutral-400 {
-  --tw-border-opacity: 1;
-  border-color: rgb(163 163 163 / var(--tw-border-opacity));
-}
-
 .border-b-gray-600 {
   --tw-border-opacity: 1;
   border-bottom-color: rgb(75 85 99 / var(--tw-border-opacity));
@@ -1313,6 +1345,11 @@ h2 {
 .px-2 {
   padding-left: 0.5rem;
   padding-right: 0.5rem;
+}
+
+.py-12 {
+  padding-top: 3rem;
+  padding-bottom: 3rem;
 }
 
 .px-5 {
@@ -1581,10 +1618,6 @@ h2 {
   transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.ease-in {
-  transition-timing-function: cubic-bezier(0.4, 0, 1, 1);
-}
-
 html,
 body {
   height: 100%;
@@ -1766,11 +1799,6 @@ body {
 .hover\:bg-fifth:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(2 132 199 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-sky-700:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(3 105 161 / var(--tw-bg-opacity));
 }
 
 .hover\:bg-purple-700:hover {
@@ -1967,6 +1995,10 @@ body {
     width: 50%;
   }
 
+  .md\:w-\[500px\] {
+    width: 500px;
+  }
+
   .md\:w-2\/4 {
     width: 50%;
   }
@@ -1997,6 +2029,11 @@ body {
 
   .md\:p-4 {
     padding: 1rem;
+  }
+
+  .md\:px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
   }
 }
 

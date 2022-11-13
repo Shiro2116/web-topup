@@ -136,6 +136,7 @@ $data_banner = json_decode($banner, true);
             </div>
         </div>
         <div class="h-[40px]"></div>
+        <?php require_once("_/general.php") ?>
         <?php require_once("_/footer.php") ?>
     </div>
 

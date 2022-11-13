@@ -350,7 +350,7 @@ if ($data_operator['status']) {
                         </div>
                         <!-- end no wa  -->
 
-                        <button class="w-full p-4 text-white font-semibold m-shadow color-secondary border-1 border-neutral-400 rounded-lg hover:bg-sky-700 animation delay-50  duration-200 ease-in " id="btn_order">Order Sekarang</button>
+                        <button class="btn-me" id="btn_order">Order Sekarang</button>
 
                     </div>
                 </div>

@@ -81,6 +81,10 @@
     .item-table{
         @apply  px-2 py-4 text-sm sm:w-[50%]  border border-slate-700 group-hover:bg-fifth cursor-pointer duration-200 delay-100
     }
+    .btn-me{
+        @apply w-full p-4 text-white font-semibold m-shadow   color-secondary  border-neutral-400 rounded-lg hover:bg-sky-700  delay-75 duration-200 ease-in
+    }
+    /* color-secondary border-1 border-neutral-400 rounded-lg hover:bg-sky-700 animation delay-50 delay-75 duration-200 ease-in   duration-200 ease-in */
 }
 
 html,
