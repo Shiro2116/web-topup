@@ -8,6 +8,7 @@
         </div>
         <!-- nav -->
         <nav class="flex flex-col gap-2 px-2">
+        <a href="/user/home" class="menu_sidebar "><b><?php echo $data_user['nama'] ?></b></a>
             <a href="/" class="menu_sidebar">
                 Home
             </a>
@@ -21,16 +22,17 @@
                 Hubungi Kami
             </a>
             <?php
-                if (isset($data_user)) {
-                    ?>
-                        <a href="/logout" class="menu_sidebar text-red-500">Log Out</a>
-                    <?php
-                } else {
+            if (isset($data_user)) {
+            ?>
+                <a href="/logout" class="menu_sidebar text-red-500">Log Out</a>
+                <?php
+            } else {
                 ?>
                     <a href="/user/login" class="menu_sidebar">Login / Masuk</a>
                 <?php
-                }
+            }
                 ?>
+
         </nav>
     </div>
     <!-- content -->
@@ -59,9 +61,9 @@
             <div class="my-auto">
                 <?php
                 if (isset($data_user)) {
-                    ?>
-                        <a href="/logout" class="menu_list text-red-500">Log Out</a>
-                    <?php
+                ?>
+                    <a href="/user/home" class="menu_list color-fifth"><b><?php echo $data_user['nama'] ?></b></a> - <a href="/logout" class="menu_list text-red-500"> Log Out</a>
+                <?php
                 } else {
                 ?>
                     <a href="/user/login" class="menu_list">Login / Masuk</a>

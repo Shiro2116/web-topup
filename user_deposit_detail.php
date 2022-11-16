@@ -36,6 +36,7 @@ $deposit_res = json_decode($deposit, true);
                     <div class="m-shadow p-8 text-white text-center ">
                         <div class="md:w-[50%] w-full m-auto">
                         <?php
+                        // echo $deposit;exit;
                         if (isset($deposit_res['status'])) {
                             $status = $deposit_res['status'];
                             $rc = $deposit_res['rc'];
@@ -118,6 +119,10 @@ $deposit_res = json_decode($deposit, true);
                                             <div class="text-l p-4 rounded-lg bg-red-400 text-red-600"><?php echo $deposit_res['error_msg'] ?> #err1.2</div>
                                     <?php
                                     }
+                            }else{
+                                ?>
+                                <div class="text-l p-4 rounded-lg bg-red-500 text-red-100"><?php echo $deposit_res['error_msg'] ?> #err1.2</div>
+                            <?php
                             }
                         } else {
                                 ?>
@@ -139,6 +144,8 @@ $deposit_res = json_decode($deposit, true);
                                         $link = $data['data'];
                                         $va = $data['data'];
                                         $qr = $data['data'];
+                                        $link_panduan = $data['link'];
+
                                         if ($tipe == "qr"){
                                             //QRcode::png($qr);
                                             ?>
@@ -147,7 +154,7 @@ $deposit_res = json_decode($deposit, true);
                                             <h2 class="text-white">Silahkan scan QR ini</h2>
                                             <?php
                                                 if ($link != ""){
-                                                    echo '<a target="_blank" class="px-4 py-2 bg-sky-600 text-white font-semibold rounded-lg" href="'.$link.'">Petunjuk Scan Qr</a>';
+                                                    echo '<a target="_blank" class="px-4 py-2 bg-sky-600 text-white font-semibold rounded-lg" href="'.$link_panduan.'">Petunjuk Scan Qr</a>';
                                                 }
                                             ?>
                                             </div>
@@ -155,7 +162,7 @@ $deposit_res = json_decode($deposit, true);
                                         }else if ($tipe == "link"){
                                             ?>
                                                 <div class="flex mt-2 flex-col gap-4 items-center">
-                                                 <a target="_blank" class="px-4 py-2 mt-20 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link ?>">Bayar</a>
+                                                 <a target="_blank" class="px-4 py-2 mt-20 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link_panduan ?>">Bayar</a>
                                                 </div>
                                             <?php
                                         }else if ($tipe == "va"){
@@ -163,10 +170,10 @@ $deposit_res = json_decode($deposit, true);
                                             ?>
                                                 <div class="flex mt-2 flex-col gap-4 items-center">
                                                     <div>
-                                                        <div target="_blank" class="px-4 py-2 mt-20 bg-sky-600 text-white font-semibold rounded-lg"><?php echo $va ?></div>
+                                                        <div onclick="copy_text('<?php echo $va ?>')" class="px-4 py-2 mt-20 bg-sky-600 text-white font-semibold rounded-lg cursor-pointer"><?php echo $va ?></div>
                                                     <small>Kode Virtual Account</small>
                                                     </div>
-                                                    <a target="_blank" class="px-4 py-2 mt-2 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link ?>">Petunjuk Pembayaran</a>
+                                                    <a target="_blank" class="px-4 py-2 mt-2 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link_panduan ?>">Petunjuk Pembayaran</a>
                                                 </div>
                                             <?php
                                         }else{

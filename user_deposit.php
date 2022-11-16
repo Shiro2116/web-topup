@@ -57,6 +57,7 @@ $depo_res = json_decode($depo, true);
                                                     <th>Nominal</th>
                                                     <th>Status</th>
                                                     <th>Updated</th>
+                                                    <th>Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -70,6 +71,9 @@ $depo_res = json_decode($depo, true);
                                                         <td><?php echo $app->idr($row['nominal']) ?></td>
                                                         <td><?php echo $app->status_general($row['status'])?></td>
                                                         <td><?php echo $app->tgl_indo($row['updated_at'])?></td>
+                                                        <td>
+                                                            <a href="/user/deposit-detail/<?php echo $row['id'] ?>" class="px-2 py-1 bg-fifth text-gray-300 text-sm rounded-lg" >Detail</a>
+                                                        </td>
                                                     </tr>
                                                 <?php
                                                 $no++;

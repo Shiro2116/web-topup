@@ -78,7 +78,7 @@ $metode = $app->grab_data("$api_url/topup/metode/list");
                                 ?>
                             </div>
                             <div class="mt-4">
-                                <div class="text-lg text-gray-300 p-4 rounded-lg bg-fifth text-sky-100">Data deposit</div>
+                                <div class="text-lg text-gray-300 p-4 rounded-lg bg-fifth text-sky-100">Deposit saldo</div>
                             </div>
                             <div class="pt-[40px] w-full">
                                 <div>

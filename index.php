@@ -5,6 +5,11 @@ $operator = $app->grab_data($url);
 $data_op = json_decode($operator, true);
 $banner = $app->grab_data("$api_url/banner/list");
 $data_banner = json_decode($banner, true);
+
+if (isset($_COOKIE[$x_token])){
+    require_once("_helper/helper.php");
+    require_once("_helper/user_login.php");
+}
 ?>
 
 <!DOCTYPE html>
