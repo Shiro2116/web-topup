@@ -1,4 +1,4 @@
-<footer class="footer py-4 flex flex-col content mbg-secondary">
+<footer class="footer py-4 flex flex-col content mbg-secondary ">
     <div class="container-xxl flex flex-row justify-between  items-center">
         <div>
             <p class="text-white">2022 <?php echo $c_brand ?> Versi 1.1</p>

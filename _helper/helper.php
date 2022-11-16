@@ -9,3 +9,8 @@ function get_user($app){
     $res = $app->grab_data_auth($url,$x_token);
     return $res;
 }
+
+function my_token(){
+    $x_token = $_COOKIE[X_TOKEN];
+    return $x_token;
+}

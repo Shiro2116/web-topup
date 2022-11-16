@@ -20,7 +20,7 @@ if (isset($_POST['email'], $_POST['password'])) {
                 $token = $data['token'];
                 $cookie_name = $x_token;
                 setcookie($cookie_name, $token, time() + (86400 * (30 * 12)), "/");
-                header("Location: /home");
+                header("Location: /user/home");
             } else {
                 $alert = true;
                 $alert_msg = $res_json['error_msg'];

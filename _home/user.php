@@ -3,6 +3,11 @@
         <div class="">
             <p class="text-slate-400 text-lg">Saldo</p>
             <h2 class="text-gray-300 text-2xl font-bold"> <?php echo $app->idr($data_user['saldo']) ?></h2>
+            <a href="/user/deposit-order" >
+                <div class="px-2 py-1 bg-fifth mt-2 text-gray-200 text-lg rounded-lg hover:bg-sky-700  delay-75 duration-200 ease-in">
+                    Deposit saldo
+                </div>
+            </a>
         </div>
     </div>
     <div class="pt-8">

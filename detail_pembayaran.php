@@ -27,7 +27,7 @@ $data_trx = json_decode($fetch_trx, true);
     <div class="flex flex-col justify-between h-full">
         <div>
             <?php require_once("_/header.php") ?>
-            <div class=" sm:pt-[160px] pt-[70px]">
+            <div class=" sm:pt-[160px] pt-[50px]">
                 <div class="container-xxl flex flex-col gap-8">
                     <div class="m-shadow p-8 text-white text-center ">
                         <div class="md:w-[50%] w-full m-auto">
@@ -161,6 +161,7 @@ $data_trx = json_decode($fetch_trx, true);
                                             $link = $data['data'];
                                             $va = $data['data'];
                                             $qr = $data['data'];
+                                            $link_panduan = $data['link'];
                                             if ($tipe == "qr"){
                                                 //QRcode::png($qr);
                                                 ?>
@@ -169,7 +170,7 @@ $data_trx = json_decode($fetch_trx, true);
                                                 <h2 class="text-white">Silahkan scan QR ini</h2>
                                                 <?php
                                                     if ($link != ""){
-                                                        echo '<a target="_blank" class="px-4 py-2 bg-sky-600 text-white font-semibold rounded-lg" href="'.$link.'">Petunjuk Scan Qr</a>';
+                                                        echo '<a target="_blank" class="px-4 py-2 bg-sky-600 text-white font-semibold rounded-lg" href="'.$link_panduan.'">Petunjuk Scan Qr</a>';
                                                     }
                                                 ?>
                                                 </div>
@@ -188,7 +189,7 @@ $data_trx = json_decode($fetch_trx, true);
                                                             <div target="_blank" class="px-4 py-2 mt-20 bg-sky-600 text-white font-semibold rounded-lg"><?php echo $va ?></div>
                                                         <small>Kode Virtual Account</small>
                                                         </div>
-                                                        <a target="_blank" class="px-4 py-2 mt-2 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link ?>">Petunjuk Pembayaran</a>
+                                                        <a target="_blank" class="px-4 py-2 mt-2 bg-sky-600 text-white font-semibold rounded-lg" href="<?php echo $link_panduan ?>">Petunjuk Pembayaran</a>
                                                     </div>
                                                 <?php
                                             }else{

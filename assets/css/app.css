@@ -99,6 +99,18 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+.responsive {
+    width: 100%;
+    border-collapse: collapse;
+  }
+
+.dataTables_wrapper {
+    color: white !important;
+}
+
+.form-select-sm > select > option{
+    color: #1B2328 !important;
+}
 .mbg-primary {
     /* background-color: whit; */
     background-color: #212529;

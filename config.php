@@ -11,3 +11,4 @@ $kontak = "https://api.whatsapp.com/send/?phone=6283187188999&text=Halo kak $c_b
 $captcha_secret = "6LcARcUiAAAAADO7kiuEgqCIJ4nhZF8_C4rHUj_P";
 $captcha_site_key = "6LcARcUiAAAAAEHie3viJXshh1VId9dvGJfbYAkg";
 $x_token = "x-token";
+define("KATEGORI_SALDO", "3");
