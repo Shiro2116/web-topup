@@ -8,16 +8,22 @@
         </div>
         <!-- nav -->
         <nav class="flex flex-col gap-2 px-2">
-        <a href="/user/home" class="menu_sidebar "><b><?php echo $data_user['nama'] ?></b></a>
+            <?php
+            if (isset($data_user)) {
+            ?>
+                <a href="/user/home" class="menu_sidebar "><b><?php echo $data_user['nama'] ?></b></a>
+            <?php
+            }
+            ?>
             <a href="/" class="menu_sidebar">
                 Home
             </a>
             <a href="/cek-transaksi" class="menu_sidebar">
                 Cek Transaksi
             </a>
-            <!-- <a href="" class="menu_sidebar">
+            <a href="/daftar/harga" class="menu_sidebar">
                 Daftar Harga
-            </a> -->
+            </a>
             <a href="<?php echo $kontak ?>" target="_blank" class="menu_sidebar">
                 Hubungi Kami
             </a>
@@ -25,13 +31,13 @@
             if (isset($data_user)) {
             ?>
                 <a href="/logout" class="menu_sidebar text-red-500">Log Out</a>
-                <?php
+            <?php
             } else {
-                ?>
-                    <a href="/user/login" class="menu_sidebar">Login / Masuk</a>
-                <?php
+            ?>
+                <a href="/user/login" class="menu_sidebar">Login / Masuk</a>
+            <?php
             }
-                ?>
+            ?>
 
         </nav>
     </div>
@@ -55,7 +61,7 @@
             <div class="flex flex-row  gap gap-4 items-start w-1/2">
                 <a href="/" class="menu_list">Home</a>
                 <a href="/cek-transaksi" class="menu_list">Cek Transaksi</a>
-                <!-- <a href="/daftar/harga" class="menu_list">Daftar Harga</a> -->
+                <a href="/daftar/harga" class="menu_list">Daftar Harga</a>
                 <a href="<?php echo $kontak ?>" target="_blank" class="menu_list">Hubungi Kami</a>
             </div>
             <div class="my-auto">

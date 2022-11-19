@@ -106,6 +106,7 @@ $trx_res = json_decode($trx, true);
     </div>
 
     <?php require_once("_/general.php") ?>
+    <?php require_once("_/footer.php") ?>
 
     <script src="<?php echo $c_url ?>/assets/app.js"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>

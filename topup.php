@@ -1,6 +1,9 @@
 <?php
 require_once("config.php");
-
+require_once("_helper/helper.php");
+if (isset($_COOKIE[$x_token])) {
+    require_once("_helper/user_login.php");
+}
 
 if (isset($_POST['act'])) {
     $act = $_POST['act'];
@@ -44,15 +47,29 @@ if (isset($_POST['act'])) {
             'tujuan' => $user_id,
             'server_id' => $server_id
         );
-        $res = $app->curl_post_json("$api_url/trx/proses", $data);
+        if (isset($_COOKIE[$x_token])) {
+            //with auth
+            $token = my_token();
+            $res = $app->curl_post_json_with_auth("$api_url/trx/with-auth", $data, $token);
+        } else {
+            $res = $app->curl_post_json("$api_url/trx/proses", $data);
+        }
         $res_dec = json_decode($res, true);
         if (isset($res_dec['status'])) {
             if ($res_dec['status'] == 1) {
-                $out = array(
-                    'status' => 1,
-                    'message' => $res_dec['message'],
-                    'data' => $res_dec['data']
-                );
+                $rc = $res_dec['rc'];
+                if ($rc == 200) {
+                    $out = array(
+                        'status' => 1,
+                        'message' => $res_dec['message'],
+                        'data' => $res_dec['data']
+                    );
+                } else {
+                    $out = array(
+                        'status' => 0,
+                        'error_msg' => $res_dec['message']
+                    );
+                }
             } else {
                 $out = array(
                     'status' => 0,
@@ -98,9 +115,11 @@ if ($data_operator['status']) {
         $op_helper = $data_op['helper'];
         $op_tipe = $data_op['tipe'];
         $op_slug = $data_op['slug'];
+        $op_petunjuk = $data_op['petunjuk'];
         $produk  = $app->curl_post_json("$api_url/produk/list-by-operator", array("id_operator" => $op_id));
         $metode = $app->grab_data("$api_url/topup/metode/list");
-        if ($app->contains(strtolower($op_name), "mobile legend") or $app->contains(strtolower($op_name), "free fire")) {
+        // echo $op_name;
+        if ($app->contains(strtolower($op_name), "mobile legend") or $app->contains(strtolower($op_name), "mobilelegend")  or $app->contains(strtolower($op_name), "free fire") or $app->contains(strtolower($op_name), "freefire")) {
             $is_cek_user = 1;
         } else {
             $is_cek_user = 0;
@@ -170,7 +189,7 @@ if ($data_operator['status']) {
                                 </div>
                             </div>
                             <div class="px-4 pb-4">
-                                <button class="bg-gold rounded-lg px-4 py-1 text-white focus:outline-none">Petunjuk</button>
+                                <button class="bg-fifth rounded-lg px-4 py-1 text-white focus:outline-none hover:bg-sky-700  delay-75 duration-200 ease-in" onclick="show_modal('modalPetunjuk')">Petunjuk</button>
                             </div>
                         </div>
                         <!-- end form akun  -->
@@ -340,7 +359,7 @@ if ($data_operator['status']) {
                             <div class="p-4">
                                 <div class="form-group mb-3" bis_skin_checked="1">
                                     <span class="text-red-500">* <i>wajib</i></span>
-                                    <input class="form-input" placeholder="08xxxxxxxxxx (wajib)" type="number" name="no_wa" id="no_wa" required="">
+                                    <input class="form-input" placeholder="08xxxxxxxxxx (wajib)" type="number" name="no_wa" id="no_wa" required="" value="<?php echo isset($data_user['hp']) ? $data_user['hp'] : "" ?>" <?php echo isset($data_user['hp']) ? "disabled" : "" ?>>
                                 </div>
                                 <ul>
                                     <li><span class="text-red-500">* <i></i></span><small class="text-color-fourth"><i>Pastikan nomor yang di input benar. Nomor akan di hubungi jika terjadi masalah</i></small></li>
@@ -356,8 +375,12 @@ if ($data_operator['status']) {
                 </div>
             </div>
         </div>
-        <div class="mt-[100px]"></div>
 
+        <div class="mt-[100px]"></div>
+        <?php
+        require_once("_/general.php");
+        require_once("_/footer.php");
+        ?>
         <!-- modal  -->
         <div class="modal fade fixed top-0 left-0 hidden w-full h-full outline-none overflow-x-hidden overflow-y-auto" id="exampleModalCenter" tabindex="-1" aria-labelledby="exampleModalCenterTitle" aria-modal="true" role="dialog">
             <div class="modal-dialog modal-dialog-centered relative w-auto pointer-events-none">
@@ -462,12 +485,27 @@ if ($data_operator['status']) {
                 </div>
             </div>
         </div>
+
+        <!-- https://codepen.io/f7deat/pen/JjROpPv -->
+        <div class="fixed z-10 top-1/4 bottom-0 w-full left-0 hidden" id="modalPetunjuk">
+            <div class="flex items-center justify-center min-height-100vh pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+                <div class="fixed md:inset-0 top-25 transition-opacity">
+                    <div class="absolute md:inset-0 bg-gray-900 opacity-75" />
+                </div>
+                <span class="hidden sm:inline-block sm:align-middle sm:h-screen">&#8203;</span>
+                <div class="inline-block align-center bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full" role="dialog" aria-modal="true" aria-labelledby="modal-headline">
+                    <div class="bg-white px-4 pt-5 pb-4 sm:p-2 sm:pb-4">
+                        <img src="<?php echo $op_petunjuk ?>" class="w-full h-full" alt="">
+                    </div>
+                    <div class="bg-gray-200 px-4 py-3 text-right">
+                        <button type="button" class="py-2 px-4 bg-gray-500 text-white rounded hover:bg-gray-700 mr-2" onclick="hide_modal('modalPetunjuk')"><i class="fas fa-times"></i> Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
         <!-- end modal  -->
 
-        <?php
-        require_once("_/general.php");
-        require_once("_/footer.php");
-        ?>
+
     </div>
 
     <script src="<?php echo $c_url ?>/assets/app.js?v=<?php echo rand() ?>"></script>
@@ -488,6 +526,7 @@ if ($data_operator['status']) {
         var ml_nominal = $(".ml_nominal")
         var ml_item = $(".ml_item")
         var ml_metode = $(".ml_metode")
+        var modalPetunjuk = $("#modalPetunjuk")
 
         //setup data form
         var metode_id = 0
@@ -502,6 +541,8 @@ if ($data_operator['status']) {
         var metode_name
         var produk_nominal = 0
         var is_order = 0
+        var cookie_tujuan = '<?php echo "$key_cookie_tujuan-$op_id" ?>'
+        var cookie_server = '<?php echo "$key_cookie_serverid-$op_id" ?>'
 
         function show_modal_username() {
             ml_item.html(produk_name)
@@ -510,6 +551,11 @@ if ($data_operator['status']) {
             modal_username.removeClass("hidden")
             modal_username.addClass("fixed");
         }
+
+        var tmp_tujuan = getCookie(cookie_tujuan)
+        var tmp_server = getCookie(cookie_server)
+        user_id.val(tmp_tujuan)
+        server_id.val(tmp_server)
 
         function hide_modal_username() {
             if (is_order == 1) {
@@ -545,6 +591,8 @@ if ($data_operator['status']) {
                 return
             }
 
+            setCookie(cookie_tujuan, user_id.val(), 1000)
+            setCookie(cookie_server, server_id.val(), 1000)
 
             // toast("hello")
             if (tipe_cek == 1) {
@@ -553,9 +601,9 @@ if ($data_operator['status']) {
                 cek_username()
             } else {
                 //langsung proses order
-                loading_btn(btn_order)
+                // loading_btn(btn_order)
                 order()
-                release_btn(btn_order, "Order")
+                // release_btn(btn_order, "Order")
             }
         })
 
@@ -569,7 +617,7 @@ if ($data_operator['status']) {
             try {
                 var res = await curl_post(file, {
                     operator: '<?php echo $op_name ?>',
-                    tujuan: user_id.val()+server_id.val(),
+                    tujuan: user_id.val() + server_id.val(),
                     act: "cek"
                 })
                 if (res.status == 1) {
@@ -589,6 +637,7 @@ if ($data_operator['status']) {
 
         async function order() {
             is_order = 1
+            loading_btn(btn_order)
             try {
                 var res = await curl_post(file, {
                     hp: wa.val(),
@@ -602,7 +651,7 @@ if ($data_operator['status']) {
                     toast(res.message)
                     var trxid = res.data
                     setTimeout(() => {
-                        window.location.replace("/order/"+trxid);
+                        window.location.replace("/order/" + trxid);
                     }, 2000);
                 } else {
                     var msg = res.error_msg

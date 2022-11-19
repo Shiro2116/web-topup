@@ -1,6 +1,10 @@
 <?php
 require_once("config.php");
 include "library/phpqrcode/qrlib.php";
+if (isset($_COOKIE[$x_token])) {
+    require_once("_helper/helper.php");
+    require_once("_helper/user_login.php");
+}
 
 if (!isset($_GET['trx_id'])) {
     echo "need trx id";
@@ -111,7 +115,7 @@ $data_trx = json_decode($fetch_trx, true);
                                                 </td>
                                                 <td class="item-table text-left">
                                                     <div class="text-sm ">
-                                                        <?php echo $data['status_pembayaran'] ?>
+                                                        <?php echo $app->status_general($data['status_pembayaran']) ?>
                                                     </div>
                                                 </td>
                                             </tr>
@@ -121,7 +125,7 @@ $data_trx = json_decode($fetch_trx, true);
                                                 </td>
                                                 <td class="item-table text-left">
                                                     <div class="text-sm ">
-                                                    <?php echo $data['status'] ?>
+                                                    <?php echo $app->status_general($data['status']) ?>
 
                                                     </div>
                                                 </td>
@@ -219,8 +223,8 @@ $data_trx = json_decode($fetch_trx, true);
             </div>
         </div>
         <div class="mt-[100px]"></div>
-        <?php require_once("_/footer.php") ?>
         <?php require_once("_/general.php") ?>
+        <?php require_once("_/footer.php") ?>
     </div>
 
     <script src="<?php echo $c_url ?>/assets/app.js?v=<?php echo rand() ?>"></script>

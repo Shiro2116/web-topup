@@ -1,6 +1,9 @@
 <?php
 require_once("config.php");
-
+if (isset($_COOKIE[$x_token])){
+    require_once("_helper/helper.php");
+    require_once("_helper/user_login.php");
+}
 ?>
 
 <!DOCTYPE html>
