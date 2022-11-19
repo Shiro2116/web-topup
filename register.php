@@ -30,7 +30,7 @@ if (isset($_POST['email'])) {
                         $token = $res_data['data']['token'];
                         $cookie_name = $x_token;
                         setcookie($cookie_name, $token, time() + (86400 * (30*12)), "/");
-                        header("Location: /home");
+                        header("Location: /user/home");
                         exit;
                     } else {
                         $msg = $res_data['error_msg'];
