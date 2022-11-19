@@ -49,7 +49,6 @@ $depo_res = json_decode($depo, true);
                                     if ($status ==1){
                                         if ($rc == 200) {
                                             $data = $depo_res['data']['data'];
-
                                             ?>
                                             <table id="example" class="table table-striped text-white  responsive" style="width:100%">
                                                 <thead>
@@ -86,13 +85,13 @@ $depo_res = json_decode($depo, true);
                                         <?php
                                         } else {
                                         ?>
-                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['message'] ?></div>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $depo_res['message'] ?></div>
 
                                         <?php
                                         }
                                     }else{
                                         ?>
-                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['error_msg'] ?></div>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $depo_res['error_msg'] ?></div>
 
                                         <?php
                                     }
