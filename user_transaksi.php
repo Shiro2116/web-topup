@@ -45,48 +45,57 @@ $trx_res = json_decode($trx, true);
                                 <?php
                                 if (isset($trx_res['status'])) {
                                     $rc = $trx_res['rc'];
-                                    if ($rc == 200) {
-                                        $data = $trx_res['data']['data'];
+                                    $status = $trx_res['status'];
+                                    if ($status ==1){
+                                        if ($rc == 200) {
+                                            $data = $trx_res['data']['data'];
 
-                                ?>
-                                        <table id="example" class="table table-striped text-white  responsive" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Trx ID<br/>Tujuan</th>
-                                                    <th>Produk</th>
-                                                    <th>Harga</th>
-                                                    <th>Status</th>
-                                                    <th>Sn</th>
-                                                    <th>Updated</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                 $no = 1;
-                                                foreach ($data as $row) {
-                                                ?>
+                                            ?>
+                                            <table id="example" class="table table-striped text-white  responsive" style="width:100%">
+                                                <thead>
                                                     <tr>
-                                                        <td><?php echo $no ?></td>
-                                                        <td><?php echo $row['trx_id']."<br/>".$row['tujuan_server_id'] ?></td>
-                                                        <td><?php echo $row['operator_name'] . " " . $row['produk_name'] ?></td>
-                                                        <td><?php echo $app->idr($row['price_sell']) ?></td>
-                                                        <td><?php echo $app->status_general($row['status'])?></td>
-                                                        <td><?php echo $row['sn']?></td>
-                                                        <td><?php echo $app->tgl_indo($row['updated_at'])?></td>
+                                                        <th>No</th>
+                                                        <th>Trx ID<br/>Tujuan</th>
+                                                        <th>Produk</th>
+                                                        <th>Harga</th>
+                                                        <th>Status</th>
+                                                        <th>Sn</th>
+                                                        <th>Updated</th>
                                                     </tr>
-                                                <?php
-                                                $no++;
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['message'] ?></div>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                     $no = 1;
+                                                    foreach ($data as $row) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $no ?></td>
+                                                            <td><?php echo $row['trx_id']."<br/>".$row['tujuan_server_id'] ?></td>
+                                                            <td><?php echo $row['operator_name'] . " " . $row['produk_name'] ?></td>
+                                                            <td><?php echo $app->idr($row['price_sell']) ?></td>
+                                                            <td><?php echo $app->status_general($row['status'])?></td>
+                                                            <td><?php echo $row['sn']?></td>
+                                                            <td><?php echo $app->tgl_indo($row['updated_at'])?></td>
+                                                        </tr>
+                                                    <?php
+                                                    $no++;
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['message'] ?></div>
 
-                                    <?php
+                                        <?php
+                                        }
+                                    }else{
+                                        ?>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['error_msg'] ?></div>
+
+                                        <?php
+
                                     }
                                 } else {
                                     ?>

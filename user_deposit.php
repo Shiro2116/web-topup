@@ -45,48 +45,56 @@ $depo_res = json_decode($depo, true);
                                 <?php
                                 if (isset($depo_res['status'])) {
                                     $rc = $depo_res['rc'];
-                                    if ($rc == 200) {
-                                        $data = $depo_res['data']['data'];
+                                    $status = $depo_res['status'];
+                                    if ($status ==1){
+                                        if ($rc == 200) {
+                                            $data = $depo_res['data']['data'];
 
-                                ?>
-                                        <table id="example" class="table table-striped text-white  responsive" style="width:100%">
-                                            <thead>
-                                                <tr>
-                                                    <th>No</th>
-                                                    <th>Metode</th>
-                                                    <th>Nominal</th>
-                                                    <th>Status</th>
-                                                    <th>Updated</th>
-                                                    <th>Action</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                <?php
-                                                 $no = 1;
-                                                foreach ($data as $row) {
-                                                ?>
+                                            ?>
+                                            <table id="example" class="table table-striped text-white  responsive" style="width:100%">
+                                                <thead>
                                                     <tr>
-                                                        <td><?php echo $no ?></td>
-                                                        <td><?php echo $row['metode_name'] ?></td>
-                                                        <td><?php echo $app->idr($row['nominal']) ?></td>
-                                                        <td><?php echo $app->status_general($row['status'])?></td>
-                                                        <td><?php echo $app->tgl_indo($row['updated_at'])?></td>
-                                                        <td>
-                                                            <a href="/user/deposit-detail/<?php echo $row['id'] ?>" class="px-2 py-1 bg-fifth text-gray-300 text-sm rounded-lg" >Detail</a>
-                                                        </td>
+                                                        <th>No</th>
+                                                        <th>Metode</th>
+                                                        <th>Nominal</th>
+                                                        <th>Status</th>
+                                                        <th>Updated</th>
+                                                        <th>Action</th>
                                                     </tr>
-                                                <?php
-                                                $no++;
-                                                }
-                                                ?>
-                                            </tbody>
-                                        </table>
-                                    <?php
-                                    } else {
-                                    ?>
-                                        <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['message'] ?></div>
+                                                </thead>
+                                                <tbody>
+                                                    <?php
+                                                     $no = 1;
+                                                    foreach ($data as $row) {
+                                                    ?>
+                                                        <tr>
+                                                            <td><?php echo $no ?></td>
+                                                            <td><?php echo $row['metode_name'] ?></td>
+                                                            <td><?php echo $app->idr($row['nominal']) ?></td>
+                                                            <td><?php echo $app->status_general($row['status'])?></td>
+                                                            <td><?php echo $app->tgl_indo($row['updated_at'])?></td>
+                                                            <td>
+                                                                <a href="/user/deposit-detail/<?php echo $row['id'] ?>" class="px-2 py-1 bg-fifth text-gray-300 text-sm rounded-lg" >Detail</a>
+                                                            </td>
+                                                        </tr>
+                                                    <?php
+                                                    $no++;
+                                                    }
+                                                    ?>
+                                                </tbody>
+                                            </table>
+                                        <?php
+                                        } else {
+                                        ?>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['message'] ?></div>
 
-                                    <?php
+                                        <?php
+                                        }
+                                    }else{
+                                        ?>
+                                            <div class="text-lg p-4 rounded-lg bg-red-200 text-red-600"><?php echo $row['error_msg'] ?></div>
+
+                                        <?php
                                     }
                                 } else {
                                     ?>
