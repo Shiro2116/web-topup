@@ -1,0 +1,16 @@
+<?php
+session_start();
+$api_url = "http://127.0.0.1:9001/v1";
+$c_desc = "Top up Game &amp; Voucher termurah, aman, dan terpercaya. legal 100% open 24 Jam dengan metode pembayaran terlengkap Indonesia";
+$c_brand = "";
+$c_desc_simple = "$c_brand - Top Up Game Termurah Buka 24 Jam";
+require_once("core/app.class.php");
+$app = new App();
+$c_url = "http://192.168.43.2:8082";
+$kontak = "https://api.whatsapp.com/send/?phone=&text=Halo kak $c_brand&type=phone_number&app_absent=0";
+$captcha_secret = "";
+$captcha_site_key = "";
+$x_token = "x-token";
+define("KATEGORI_SALDO", "3");
+$key_cookie_tujuan = "key-order-tujuan";
+$key_cookie_serverid = "key-order-serverid";
