@@ -135,8 +135,10 @@ class App
             return "<span class='p-1 bg-green-600 text-white text-sm rounded-lg'>Sukses</span>";
         }else if  ($status == "Gagal"){
             return "<span class='p-1 bg-red-600 text-white text-sm rounded-lg'>Gagal</span>";
+        }else if  ($status == "Proses"){
+            return "<span class='p-1 bg-blue-600 text-white text-sm rounded-lg'>Proses</span>";
         }else{
-            return "<span class='p-1 bg-blue-600 text-white text-sm rounded-lg'>Unknown</span>";
+            return "<span class='p-1 bg-pink-600 text-white text-sm rounded-lg'>Unknown</span>";
         }
     }
 
