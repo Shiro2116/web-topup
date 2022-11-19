@@ -3,7 +3,10 @@ require_once("config.php");
 require_once("_helper/helper.php");
 
 if (isset($_POST['nominal'], $_POST['metode_id'])){
-    $nominal = abs((int) $_POST['nominal']);
+    $nominal = $_POST['nominal'];
+    $nominal = str_replace(" ", "", $nominal);
+    $nominal = str_replace("Rp", "", $nominal);
+    $nominal = str_replace(".", "", $nominal);
     $metode_id = abs((int) $_POST['metode_id']);
     $xtoken = my_token();
     $data = array(
@@ -83,7 +86,7 @@ $metode = $app->grab_data("$api_url/topup/metode/list");
                             <div class="pt-[40px] w-full">
                                 <div>
                                     <label for="nominal" class="text-gray-300 font-bold">Nominal</label>
-                                    <input type="number" name="nominal" id="nominal" class="form-input">
+                                    <input type="text" name="nominal" id="nominal" class="form-input">
                                 </div>
                                 <div class="mt-5">
                                     <label for="nominal" class="text-gray-300 font-bold">Metode Pembayaran</label>
@@ -190,6 +193,12 @@ $metode = $app->grab_data("$api_url/topup/metode/list");
             }
 
             deposit();
+        })
+
+        nominal.on("keyup change", function(e) {
+            var fr = formatRupiah(nominal.val(), "Rp, ")
+            console.log(fr)
+            nominal.val(fr)
         })
 
         async function deposit(){
