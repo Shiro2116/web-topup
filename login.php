@@ -19,7 +19,8 @@ if (isset($_POST['email'], $_POST['password'])) {
                 $data = $res_json['data'];
                 $token = $data['token'];
                 $cookie_name = $x_token;
-                setcookie($cookie_name, $token, time() + (86400 * (30 * 12)), "/");
+                // cookiet
+                setcookie($cookie_name, $token, time() + (86400 * (30 * 12)), "/", "", true, true);
                 header("Location: /user/home");
             } else {
                 $alert = true;
