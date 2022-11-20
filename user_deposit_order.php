@@ -169,7 +169,7 @@ $metode = $app->grab_data("$api_url/topup/metode/list");
 
     <div class="h-[40px]"></div>
     <?php require_once("_/general.php") ?>
-    <?php require_once("_/footer.php") ?>
+    <?php //require_once("_/footer.php") ?>
 
     <script src="<?php echo $c_url ?>/assets/app.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/tw-elements/dist/js/index.min.js"></script>

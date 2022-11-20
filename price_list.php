@@ -57,14 +57,14 @@ $file_me = "daftar/harga";
 
 </head>
 
-<body class="mbg-primary">
+<body class="mbg-primary min-h-screen flex flex-col">
     <div class="flex flex-col justify-between h-full">
         <div>
             <?php require_once("_/header.php")
             ?>
             <div class=" sm:pt-[160px] pt-[70px]">
                 <div class="container-xxl flex flex-col gap-8">
-                    <div class="m-shadow p-8 text-white text-left w-full m-auto">
+                    <div class="m-shadow p-8 text-white text-left w-full m-auto overflow-y-scroll max-h-fit">
                         <h2 class="font-semibold text-xl mb-20">Daftar harga</h2>
                         <div class="flex flex-row justify-between w-full">
                             <div></div>
@@ -88,7 +88,7 @@ $file_me = "daftar/harga";
                                 </select>
                             </div>
                         </div>
-                        <div class="mt-4">
+                        <div class="mt-4 h-full">
                             <table id="example" class="table table-striped text-white  responsive " style="width:100%">
                                 <thead>
                                     <tr>
@@ -108,14 +108,18 @@ $file_me = "daftar/harga";
         </div>
     </div>
     <?php require_once("_/general.php") ?>
-    <?php require_once("_/footer.php") ?>
+    <div class="h-[20px]"></div>
+    <div class="mt-auto">
+    <!-- <div class="fixed inset-x-0 bottom-0"> -->
+    <?php //require_once("_/footer.php") ?>
+    </div>
     <script src="<?php echo $c_url ?>/assets/app.js?v=<?php echo time() ?>"></script>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/1.13.1/js/dataTables.bootstrap5.min.js"></script>
     <script>
         var table = $('#example').DataTable({
-            lengthMenu: [25, 50, 80, 100],
+            lengthMenu: [10, 25, 50, 80, 100],
             order: [
                 [0, 'asc']
             ],

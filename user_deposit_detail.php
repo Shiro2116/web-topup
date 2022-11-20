@@ -204,7 +204,7 @@ $deposit_res = json_decode($deposit, true);
 
     <div class="md:mt-[80px] mt-[0px]"></div>
     <?php require_once("_/general.php") ?>
-    <?php require_once("_/footer.php") ?>
+    <?php //require_once("_/footer.php") ?>
 
     <script src="<?php echo $c_url ?>/assets/app.js"></script>
 
